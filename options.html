@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZonaProp Estimador de Créditos - Opciones</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .card h2 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #555;
+            font-size: 14px;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .form-group small {
+            color: #666;
+            font-size: 12px;
+            margin-top: 5px;
+            display: block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 14px 28px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-right: 10px;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-secondary {
+            background: #f5f5f5;
+            color: #333;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: #e0e0e0;
+            transform: translateY(-2px);
+        }
+
+        .status {
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .info-box {
+            background: #e3f2fd;
+            border: 1px solid #bbdefb;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .info-box h3 {
+            color: #1976d2;
+            margin-bottom: 10px;
+        }
+
+        .info-box p {
+            color: #424242;
+            line-height: 1.6;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            align-items: center;
+        }
+
+        .feature-list li:last-child {
+            border-bottom: none;
+        }
+
+        .feature-list li::before {
+            content: "✓";
+            color: #4caf50;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 10px;
+            }
+            
+            .card {
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 24px;
+            }
+            
+            .buttons {
+                flex-direction: column;
+            }
+            
+            .btn-primary, .btn-secondary {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>💰 Estimador de Créditos Hipotecarios</h1>
+            <p>Configuración avanzada para ZonaProp.com.ar</p>
+        </div>
+
+        <div class="card">
+            <h2>Configuración Principal</h2>
+            <div id="status" class="status hidden"></div>
+            
+            <div class="form-group">
+                <label for="anticipo">Anticipo disponible (USD):</label>
+                <input type="number" id="anticipo" min="0" step="1000" placeholder="20000">
+                <small>Monto que tienes disponible como anticipo en dólares estadounidenses</small>
+            </div>
+
+            <div class="form-group">
+                <label for="tna">TNA - Tasa Nominal Anual (%):</label>
+                <input type="number" id="tna" min="0" max="100" step="0.1" placeholder="4.5">
+                <small>Tasa de interés anual que esperas obtener (ejemplo: 4.5%)</small>
+            </div>
+
+            <div class="buttons">
+                <button id="saveBtn" class="btn-primary">Guardar Configuración</button>
+                <button id="resetBtn" class="btn-secondary">Restaurar Valores por Defecto</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Información de la Extensión</h2>
+            
+            <div class="info-box">
+                <h3>🔧 Funcionalidades</h3>
+                <ul class="feature-list">
+                    <li>Detecta automáticamente precios en páginas de ZonaProp</li>
+                    <li>Obtiene cotización del dólar en tiempo real</li>
+                    <li>Calcula cuotas mensuales para 5, 10 y 15 años</li>
+                    <li>Interfaz intuitiva y fácil de usar</li>
+                    <li>Configuración personalizable</li>
+                </ul>
+            </div>
+
+            <div class="info-box">
+                <h3>📋 Cómo usar</h3>
+                <p>
+                    1. Configura tu anticipo y TNA en esta página<br>
+                    2. Visita cualquier propiedad en ZonaProp.com.ar<br>
+                    3. Busca el botón "Estimar Crédito" junto al precio<br>
+                    4. Haz clic para ver las estimaciones de cuotas mensuales<br>
+                    5. Ajusta los valores directamente en el modal si es necesario
+                </p>
+            </div>
+
+            <div class="info-box">
+                <h3>⚠️ Importante</h3>
+                <p>
+                    Las estimaciones son aproximadas y solo con fines informativos. 
+                    Los valores reales pueden variar según las condiciones del banco, 
+                    seguros, gastos administrativos y otros factores. Siempre consulta 
+                    con tu entidad financiera para obtener información precisa.
+                </p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Soporte y Desarrollo</h2>
+            <p>
+                Esta extensión fue desarrollada para facilitar el cálculo de estimaciones 
+                de créditos hipotecarios en ZonaProp. Si encuentras algún problema o 
+                tienes sugerencias de mejora, no dudes en contactarnos.
+            </p>
+            <div style="margin-top: 20px;">
+                <span style="font-weight: 600;">Versión:</span> 1.0<br>
+                <span style="font-weight: 600;">Última actualización:</span> 2024
+            </div>
+        </div>
+    </div>
+
+    <script src="options.js"></script>
+</body>
+</html> 

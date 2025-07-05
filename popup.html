@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZonaProp Estimador de Créditos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 350px;
+            min-height: 400px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .header h1 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            font-size: 16px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-primary {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            padding: 12px 20px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s ease;
+            margin-bottom: 12px;
+        }
+
+        .btn-primary:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.8);
+            transform: translateY(-2px);
+        }
+
+        .info-section {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .info-section h3 {
+            font-size: 14px;
+            margin-bottom: 8px;
+            color: #ffeb3b;
+        }
+
+        .info-section p {
+            font-size: 12px;
+            line-height: 1.4;
+            opacity: 0.9;
+        }
+
+        .status {
+            text-align: center;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 16px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .status.success {
+            background: rgba(76, 175, 80, 0.2);
+            border: 1px solid rgba(76, 175, 80, 0.5);
+            color: #4caf50;
+        }
+
+        .status.error {
+            background: rgba(244, 67, 54, 0.2);
+            border: 1px solid rgba(244, 67, 54, 0.5);
+            color: #f44336;
+        }
+
+        .instructions {
+            font-size: 12px;
+            text-align: center;
+            opacity: 0.8;
+            margin-top: 16px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 16px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 11px;
+            opacity: 0.6;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>💰 Estimador de Créditos</h1>
+        <p>Configuración rápida para ZonaProp</p>
+    </div>
+
+    <div class="content">
+        <div id="status" class="status hidden"></div>
+
+        <div class="form-group">
+            <label for="anticipo">Anticipo disponible (USD):</label>
+            <input type="number" id="anticipo" placeholder="ej: 20000" min="0" step="1000">
+        </div>
+
+        <div class="form-group">
+            <label for="tna">TNA (%):</label>
+            <input type="number" id="tna" placeholder="ej: 4.5" min="0" max="100" step="0.1">
+        </div>
+
+        <button id="saveBtn" class="btn-primary">Guardar Configuración</button>
+        <button id="testBtn" class="btn-primary">Probar en Página Actual</button>
+
+        <div class="info-section">
+            <h3>ℹ️ Cómo usar:</h3>
+            <p>1. Configura tu anticipo y TNA preferidos<br>
+               2. Visita cualquier propiedad en ZonaProp<br>
+               3. Busca el botón "Estimar Crédito" junto al precio<br>
+               4. ¡Calcula tus cuotas mensuales!</p>
+        </div>
+
+        <div class="instructions">
+            Funciona solo en páginas de propiedades de ZonaProp.com.ar
+        </div>
+    </div>
+
+    <div class="footer">
+        v1.0 - Estimaciones aproximadas
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+</html> 

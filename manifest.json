@@ -1,0 +1,31 @@
+{
+  "manifest_version": 3,
+  "name": "ZonaProp Estimador de Créditos Hipotecarios",
+  "version": "1.0",
+  "description": "Calcula estimaciones de créditos hipotecarios para propiedades en ZonaProp.com.ar",
+  "permissions": [
+    "activeTab",
+    "storage"
+  ],
+  "host_permissions": [
+    "https://www.zonaprop.com.ar/*",
+    "https://dolarapi.com/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["https://www.zonaprop.com.ar/propiedades/*"],
+      "js": ["content.js"],
+      "css": ["styles.css"]
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Configurar Estimador de Créditos"
+  },
+  "options_page": "options.html",
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  }
+} 
