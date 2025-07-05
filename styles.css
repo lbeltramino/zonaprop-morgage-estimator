@@ -8,6 +8,69 @@
     flex-wrap: wrap;
 }
 
+/* Contenedor de botones para listados */
+.zp-button-container-listing {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+/* Botones principales - nuevos estilos */
+.zonaprop-loan-button,
+.zonaprop-report-button {
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 13px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+    white-space: nowrap;
+    z-index: 1001;
+}
+
+.zonaprop-loan-button {
+    background: linear-gradient(135deg, #ff5722, #d84315);
+    color: white;
+}
+
+.zonaprop-loan-button:hover {
+    background: linear-gradient(135deg, #d84315, #bf360c);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 87, 34, 0.3);
+}
+
+.zonaprop-report-button {
+    background: linear-gradient(135deg, #2196F3, #1976D2);
+    color: white;
+}
+
+.zonaprop-report-button:hover {
+    background: linear-gradient(135deg, #1976D2, #1565C0);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
+}
+
+/* Estilos específicos para listados */
+.zp-button-container-listing .zonaprop-loan-button,
+.zp-button-container-listing .zonaprop-report-button {
+    font-size: 11px;
+    padding: 6px 10px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.zp-button-container-listing .zonaprop-loan-button:hover,
+.zp-button-container-listing .zonaprop-report-button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+
 /* Botón de estimación */
 .zp-estimator-btn {
     background: linear-gradient(135deg, #ff5722, #d84315);

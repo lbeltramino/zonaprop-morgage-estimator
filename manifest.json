@@ -13,7 +13,13 @@
   ],
   "content_scripts": [
     {
-      "matches": ["https://www.zonaprop.com.ar/propiedades/*"],
+      "matches": [
+        "https://www.zonaprop.com.ar/propiedades/*",
+        "https://www.zonaprop.com.ar/departamentos-venta-*",
+        "https://www.zonaprop.com.ar/casas-venta-*",
+        "https://www.zonaprop.com.ar/departamentos-alquiler-*",
+        "https://www.zonaprop.com.ar/casas-alquiler-*"
+      ],
       "js": ["content.js"],
       "css": ["styles.css"]
     }
