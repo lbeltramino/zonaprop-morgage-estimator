@@ -1,26 +1,49 @@
 /* ZonaProp Estimador de Créditos Hipotecarios - Estilos */
 
+/* Contenedor de botones */
+.zp-button-container {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+}
+
 /* Botón de estimación */
 .zp-estimator-btn {
-    background: linear-gradient(135deg, #ff5722, #f50);
+    background: linear-gradient(135deg, #ff5722, #d84315);
     color: white;
     border: none;
-    border-radius: 12px;
     padding: 12px 20px;
-    font-size: 14px;
-    font-weight: 600;
+    border-radius: 25px;
     cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
     display: flex;
     align-items: center;
     gap: 8px;
     transition: all 0.3s ease;
     box-shadow: 0 4px 12px rgba(255, 87, 34, 0.3);
-    margin-top: 16px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    position: relative;
+    overflow: hidden;
+}
+
+.zp-estimator-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.zp-estimator-btn:hover::before {
+    left: 100%;
 }
 
 .zp-estimator-btn:hover {
-    background: linear-gradient(135deg, #e64a19, #d84315);
+    background: linear-gradient(135deg, #d84315, #bf360c);
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(255, 87, 34, 0.4);
 }
@@ -29,13 +52,67 @@
     transform: translateY(0);
 }
 
-.zp-button-container {
+/* Botón de reporte */
+.zp-report-btn {
+    background: linear-gradient(135deg, #2196F3, #1976D2);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
     display: flex;
-    justify-content: flex-start;
-    margin-top: 16px;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
+    position: relative;
+    overflow: hidden;
 }
 
-/* Modal */
+.zp-report-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.zp-report-btn:hover::before {
+    left: 100%;
+}
+
+.zp-report-btn:hover {
+    background: linear-gradient(135deg, #1976D2, #1565C0);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(33, 150, 243, 0.4);
+}
+
+.zp-report-btn:active {
+    transform: translateY(0);
+}
+
+/* Estilos para dispositivos móviles */
+@media (max-width: 768px) {
+    .zp-button-container {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .zp-estimator-btn,
+    .zp-report-btn {
+        width: 100%;
+        justify-content: center;
+        padding: 14px 20px;
+        font-size: 16px;
+    }
+}
+
+/* Modal de estimación */
 #zp-estimator-modal {
     position: fixed;
     top: 0;
@@ -47,40 +124,40 @@
     justify-content: center;
     align-items: center;
     z-index: 10000;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    backdrop-filter: blur(5px);
 }
 
 .zp-modal-content {
     background: white;
+    padding: 0;
     border-radius: 16px;
-    width: 90%;
     max-width: 500px;
+    width: 90%;
     max-height: 90vh;
     overflow-y: auto;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-    animation: slideIn 0.3s ease;
+    animation: modalSlideIn 0.3s ease;
 }
 
-@keyframes slideIn {
+@keyframes modalSlideIn {
     from {
         opacity: 0;
-        transform: translateY(-20px);
+        transform: translateY(-30px) scale(0.95);
     }
     to {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateY(0) scale(1);
     }
 }
 
 .zp-modal-header {
+    background: linear-gradient(135deg, #ff5722, #d84315);
+    color: white;
+    padding: 20px 25px;
+    border-radius: 16px 16px 0 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 24px;
-    border-bottom: 1px solid #e0e0e0;
-    background: linear-gradient(135deg, #ff5722, #f50);
-    color: white;
-    border-radius: 16px 16px 0 0;
 }
 
 .zp-modal-header h3 {
@@ -95,9 +172,13 @@
     color: white;
     font-size: 24px;
     cursor: pointer;
-    padding: 4px;
-    border-radius: 4px;
-    transition: background 0.2s ease;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background 0.3s ease;
 }
 
 .zp-close-btn:hover {
@@ -105,21 +186,24 @@
 }
 
 .zp-modal-body {
-    padding: 24px;
+    padding: 25px;
 }
 
 .zp-property-info {
     background: #f8f9fa;
-    border-radius: 12px;
-    padding: 16px;
+    padding: 20px;
+    border-radius: 10px;
     margin-bottom: 20px;
-    border: 1px solid #e9ecef;
+    border-left: 4px solid #ff5722;
 }
 
 .zp-property-info p {
     margin: 8px 0;
     font-size: 14px;
-    color: #495057;
+}
+
+.zp-property-info strong {
+    color: #333;
 }
 
 .zp-input-section {
@@ -130,18 +214,17 @@
     display: block;
     margin-bottom: 8px;
     font-weight: 600;
-    color: #495057;
+    color: #333;
     font-size: 14px;
 }
 
 .zp-input-section input {
     width: 100%;
-    padding: 12px;
+    padding: 12px 16px;
     border: 2px solid #e9ecef;
     border-radius: 8px;
     font-size: 16px;
-    transition: border-color 0.3s ease;
-    box-sizing: border-box;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .zp-input-section input:focus {
@@ -151,142 +234,112 @@
 }
 
 .zp-calculate-btn {
-    background: linear-gradient(135deg, #ff5722, #f50);
+    background: linear-gradient(135deg, #4CAF50, #45a049);
     color: white;
     border: none;
-    border-radius: 12px;
-    padding: 14px 28px;
-    font-size: 16px;
-    font-weight: 600;
+    padding: 14px 24px;
+    border-radius: 8px;
     cursor: pointer;
+    font-weight: 600;
+    font-size: 16px;
     width: 100%;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(255, 87, 34, 0.3);
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
 }
 
 .zp-calculate-btn:hover {
-    background: linear-gradient(135deg, #e64a19, #d84315);
+    background: linear-gradient(135deg, #45a049, #3d8b40);
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(255, 87, 34, 0.4);
+    box-shadow: 0 6px 16px rgba(76, 175, 80, 0.4);
 }
 
+.zp-calculate-btn:active {
+    transform: translateY(0);
+}
+
+/* Resultados */
 #zp-results {
-    margin-top: 24px;
-    padding-top: 24px;
-    border-top: 1px solid #e9ecef;
+    margin-top: 20px;
 }
 
 .zp-credit-info {
     background: #e8f5e8;
-    border-radius: 12px;
-    padding: 16px;
+    padding: 20px;
+    border-radius: 10px;
     margin-bottom: 20px;
-    border: 1px solid #c8e6c9;
+    border: 2px solid #c8e6c9;
 }
 
 .zp-credit-info p {
-    margin: 4px 0;
+    margin: 8px 0;
     font-size: 14px;
+}
+
+.zp-credit-info strong {
     color: #2e7d32;
 }
 
+.zp-estimations {
+    margin-top: 20px;
+}
+
 .zp-estimations h4 {
-    margin: 0 0 16px 0;
+    color: #333;
+    margin-bottom: 15px;
     font-size: 18px;
-    font-weight: 600;
-    color: #495057;
 }
 
 .zp-estimation-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 16px;
-    margin-bottom: 12px;
-    background: #fff;
-    border: 2px solid #e9ecef;
-    border-radius: 12px;
-    transition: all 0.3s ease;
+    background: white;
+    padding: 15px 20px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .zp-estimation-item:hover {
-    border-color: #ff5722;
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(255, 87, 34, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .zp-plazo {
-    font-size: 16px;
     font-weight: 600;
-    color: #495057;
+    color: #333;
+    font-size: 16px;
 }
 
 .zp-cuota {
-    font-size: 18px;
     font-weight: 700;
-    color: #ff5722;
+    color: #2e7d32;
+    font-size: 18px;
 }
 
 .zp-disclaimer {
     margin-top: 20px;
-    padding: 16px;
+    padding: 15px;
     background: #fff3cd;
-    border-radius: 12px;
     border: 1px solid #ffeaa7;
-}
-
-.zp-disclaimer p {
-    margin: 0;
+    border-radius: 8px;
     font-size: 12px;
     color: #856404;
-    text-align: center;
 }
 
 .zp-error {
-    color: #dc3545;
-    font-weight: 600;
-    text-align: center;
-    padding: 16px;
     background: #f8d7da;
-    border-radius: 12px;
+    color: #721c24;
+    padding: 15px;
+    border-radius: 8px;
     border: 1px solid #f5c6cb;
+    font-size: 14px;
+    text-align: center;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-    .zp-modal-content {
-        width: 95%;
-        margin: 20px;
-    }
-    
-    .zp-modal-header,
-    .zp-modal-body {
-        padding: 16px;
-    }
-    
-    .zp-estimator-btn {
-        font-size: 12px;
-        padding: 10px 16px;
-    }
-    
-    .zp-estimation-item {
-        padding: 12px;
-    }
-    
-    .zp-plazo {
-        font-size: 14px;
-    }
-    
-    .zp-cuota {
-        font-size: 16px;
-    }
-}
-
-/* Animaciones adicionales */
-.zp-estimation-item {
-    animation: fadeInUp 0.5s ease forwards;
-}
-
+/* Animaciones */
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -295,5 +348,36 @@
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+.zp-estimation-item {
+    animation: fadeInUp 0.3s ease;
+}
+
+/* Estilos para el scrollbar del modal */
+.zp-modal-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.zp-modal-content::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.zp-modal-content::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+}
+
+.zp-modal-content::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+/* Responsive para tablet */
+@media (max-width: 1024px) {
+    .zp-modal-content {
+        max-width: 600px;
+        margin: 20px;
     }
 } 
