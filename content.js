@@ -1412,7 +1412,6 @@
                         <label for="tna-input">TNA (%):</label>
                         <input type="number" id="tna-input" value="${currentConfig.tna}" min="0" max="100" step="0.1">
                     </div>
-                    <button class="zp-calculate-btn" onclick="calculateEstimations()">Calcular Estimaciones</button>
                     <div id="zp-results" style="display: none;"></div>
                 </div>
             </div>
