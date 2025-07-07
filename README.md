@@ -79,7 +79,7 @@ La extensión utiliza la API gratuita de DolarAPI para obtener la cotización of
 
 ### Estructura del proyecto
 ```
-zonaprop-morgage-estimator/
+zonaprop-mortgage-estimator/
 ├── manifest.json          # Configuración de la extensión
 ├── content.js             # Script principal
 ├── styles.css             # Estilos
