@@ -1,0 +1,14 @@
+# Archivos temporales y de prueba
+*.pdf
+sample-*.txt
+elements.txt
+
+# Herramientas de desarrollo
+create-icons.html
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log 
