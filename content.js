@@ -35,14 +35,20 @@
             url: url
         });
         
-        // Detectar páginas de listado por URL
-        if (url.startsWith('https://www.zonaprop.com.ar/departamentos-venta-')) {
+        // Detectar páginas individuales primero (tienen prioridad)
+        if (url.includes('/propiedades/')) {
+            return 'individual';
+        }
+        
+        // Detectar páginas de listado por URL - cualquier URL que contenga "venta"
+        if (url.includes('zonaprop.com.ar/') && url.includes('venta')) {
             return 'listing';
         }
         
-        // Detectar páginas individuales por URL (contienen /propiedades/)
-        if (url.includes('/propiedades/')) {
-            return 'individual';
+        // También detectar otros patrones específicos de listado
+        if (url.startsWith('https://www.zonaprop.com.ar/departamentos-venta-') ||
+            url.startsWith('https://www.zonaprop.com.ar/casas-venta-')) {
+            return 'listing';
         }
         
         // Fallback: detectar por elementos DOM
