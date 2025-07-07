@@ -3,6 +3,9 @@
 sample-*.txt
 elements.txt
 
+# Plantillas HTML de desarrollo
+reporte-*.html
+
 # Herramientas de desarrollo
 create-icons.html
 
